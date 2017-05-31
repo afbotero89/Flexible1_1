@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1694</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:#222222;</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pushButton_UCIBed1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>401</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/pacienteUCI1.png</normaloff>:/images/pacienteUCI1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>767</width>
+      <height>491</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_UCIBed3">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>190</y>
+      <width>401</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/pacienteUCI2.png</normaloff>:/images/pacienteUCI2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>767</width>
+      <height>491</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_UCIBed4">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>190</y>
+      <width>401</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/pacienteUCI2.png</normaloff>:/images/pacienteUCI2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>767</width>
+      <height>491</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_TimerImage1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>700</y>
+      <width>141</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/TimerV2.00045.png</normaloff>:/images/TimerV2.00045.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>141</width>
+      <height>131</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Timer1">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>700</y>
+      <width>281</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 25 30pt &quot;Helvetica Neue&quot;;
+color:white;
+background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string>00:00:00</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Timer3">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>700</y>
+      <width>291</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 25 30pt &quot;Helvetica Neue&quot;;
+color:white;
+background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string>00:00:00</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_TimerImage3">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>700</y>
+      <width>141</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/TimerV2.00045.png</normaloff>:/images/TimerV2.00045.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>141</width>
+      <height>131</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Timer4">
+    <property name="geometry">
+     <rect>
+      <x>1390</x>
+      <y>700</y>
+      <width>291</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 25 30pt &quot;Helvetica Neue&quot;;
+color:white;
+background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string>00:00:00</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_TimerImage4">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>700</y>
+      <width>141</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/TimerV2.00091.png</normaloff>:/images/TimerV2.00091.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>141</width>
+      <height>131</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1900</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 25 27pt &quot;Helvetica Neue&quot;;
+background-color: rgb(0, 0, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>    Sensor Flexible</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>10</y>
+      <width>401</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/images/logoGIBIC.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Timer2">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>700</y>
+      <width>291</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 25 30pt &quot;Helvetica Neue&quot;;
+color:white;
+background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string>00:00:00</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_TimerImage1_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>700</y>
+      <width>141</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#0B243B</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/TimerV2.00014.png</normaloff>:/images/TimerV2.00014.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>141</width>
+      <height>131</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_UCIBed2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>190</y>
+      <width>401</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/images/pacienteUCI1.png</normaloff>:/images/pacienteUCI1.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>767</width>
+      <height>491</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1694</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>

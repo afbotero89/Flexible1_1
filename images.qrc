@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>pacienteUCI1.png</file>
+        <file>pacienteUCI2.png</file>
+        <file>TimerV2.00014.png</file>
+        <file>TimerV2.00045.png</file>
+        <file>TimerV2.00091.png</file>
+        <file>logoGIBIC.png</file>
+        <file>UCI3.png</file>
+        <file>GraficoPresion.png</file>
+        <file>pacienteDeFrente2.png</file>
+        <file>BedMonitoreoV2.00033.png</file>
+        <file>controlActivo1.png</file>
+        <file>historial4.png</file>
+        <file>UCI1.png</file>
+        <file>UCI2.png</file>
+        <file>UCI4.png</file>
+        <file>sensor1.jpeg</file>
+        <file>sensor2.jpeg</file>
+        <file>sensor1SinTiempos.jpeg</file>
+        <file>sensor2SinTiempos.jpeg</file>
+    </qresource>
+</RCC>
