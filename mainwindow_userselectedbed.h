@@ -27,6 +27,10 @@ public:
 
     void hidenHorizontalVerticalLabels();
 
+    void reloadAveragePressureValues();
+
+    void insertPlots(QString promediosZona1, QString promediosZona2, QString promediosZona3, QString promediosZona4, QString promediosZona5, QString promediosZona6);
+
 private slots:
 
     void reloadExpositionTimes();
@@ -38,8 +42,6 @@ private slots:
     void on_pushButtonPressureButton_clicked(bool checked);
 
     void on_pushButtonExpositionTimes_clicked(bool checked);
-
-    void on_pushButtonStadistics_clicked(bool checked);
 
     void on_pushButtonStadistics_2_clicked(bool checked);
 

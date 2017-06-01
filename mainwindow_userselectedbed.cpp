@@ -9,11 +9,23 @@
 QTimer *timer;
 QTimer *timerExpositionTimes;
 
-int stateMachine = 0;   //0:Distribucion presion sin tiempos, 1:Distribucion presion con tiempos, 2:Estadisticas 1, 3: Estadisticas 2
+int stateMachine = 0;   //0:Distribucion presion sin tiempos, 1:Distribucion presion con tiempos, 2:Estadisticas 1
 int userSelectedBed_int = 1;
 
 bool open = false;
 QSqlDatabase db;
+
+bool openPromedios = false;
+QSqlDatabase dbPromedios;
+
+int contador = 0;
+
+QString promediosZona1;
+QString promediosZona2;
+QString promediosZona3;
+QString promediosZona4;
+QString promediosZona5;
+QString promediosZona6;
 
 MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     QMainWindow(parent),
@@ -23,10 +35,6 @@ MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     timer = new QTimer(this);
     timerExpositionTimes = new QTimer(this);
 
-    QString path = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/estadisticas.db";
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(path);
-    open = db.open();
     //ui->label_zona1_1->setStyleSheet("background: yellow");
     initActionsConnections();
 }
@@ -55,7 +63,7 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
     QPixmap pixmapSensor2("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
     QPixmap historicGraphs("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
 
-     if(stateMachine == 0 || stateMachine == 1 || stateMachine == 2){
+     if(stateMachine == 0 || stateMachine == 1){
          pixmapSensor1 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1SinTiempos.jpeg");
          pixmapSensor2 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor2SinTiempos.jpeg");
      }
@@ -86,27 +94,7 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
             ui->label_historicRegisters->setPixmap(historicGraphs);
         }
 
-    }else if(stateMachine==2){
-
-         ui->label_stadisticWindow->setFixedWidth(651);
-         ui->label_stadisticWindow2->setFixedWidth(651);
-
-         historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/GraficoPresion.png");
-
-         if (historicGraphs.width() == 0 || historicGraphs.height() == 0){
-
-         }else{
-             ui->label_historicRegisters->setPixmap(historicGraphs);
-         }
-
-     }else if(stateMachine == 3){
-
-        ui->label_stadisticWindow->setFixedWidth(1301);
-        ui->label_stadisticWindow2->setFixedWidth(1);
-        pixmapSensor1 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/GraficoPresion1.png");
-        if(pixmapSensor1.width() == 0 || pixmapSensor1.width() == 0){
-            ui->label_historicRegisters->setPixmap(pixmapSensor1);
-        }
+    }else if(stateMachine == 2){
 
         historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/flexible1.1/img/historial_main.png");
 
@@ -115,6 +103,8 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
         }else{
             ui->label_historicRegisters->setPixmap(historicGraphs);
         }
+
+        reloadAveragePressureValues();
     }
 
     if(pixmapSensor1.size().width()==0 & pixmapSensor1.size().height()==0){
@@ -134,10 +124,9 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
 void MainWindow_UserSelectedBed::on_pushButtonPressureButton_clicked(bool checked)
 {
     stateMachine = 0;
-
+    ui->customPlot->setHidden(true);
     qDebug()<<"distribucion";
-    timer->start(100);
-
+    timer->start(200);
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
     hidenHorizontalVerticalLabels();
@@ -146,25 +135,35 @@ void MainWindow_UserSelectedBed::on_pushButtonPressureButton_clicked(bool checke
 
 void MainWindow_UserSelectedBed::on_pushButtonExpositionTimes_clicked(bool checked)
 {
+    // Abre base de datos que almacena los tiempos de exposicion
+    QString path = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/estadisticas.db";
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setHostName("tiemposExposicion");
+    db.setDatabaseName(path);
+    open = db.open();
+
     stateMachine = 1;
     timerExpositionTimes->start(1500);
     hidenHorizontalVerticalLabels();
-}
 
-void MainWindow_UserSelectedBed::on_pushButtonStadistics_clicked(bool checked)
-{
-    stateMachine = 2;
-    //timerExpositionTimes->stop();
-    hidenLabelesExpositionTimes();
-    hidenHorizontalVerticalLabels();
+    ui->customPlot->setHidden(true);
 }
 
 void MainWindow_UserSelectedBed::on_pushButtonStadistics_2_clicked(bool checked)
 {
-    stateMachine = 3;
+    // Abre base de datos que almacena los promedios de presion por zonas
+    QString pathPromedios = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/estadisticasPromedios.db";
+    QSqlDatabase dbPromedios = QSqlDatabase::addDatabase("QSQLITE");
+    dbPromedios.setHostName("promediosPresion");
+    dbPromedios.setDatabaseName(pathPromedios);
+    openPromedios = dbPromedios.open();
+
+    stateMachine = 2;
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
     hidenHorizontalVerticalLabels();
+
+    ui->customPlot->setHidden(false);
 }
 
 void MainWindow_UserSelectedBed::userSelectedBed(int bed){
@@ -195,19 +194,180 @@ void MainWindow_UserSelectedBed::reloadExpositionTimes(){
             QString sensorID = query.value(0).toString();
             if (sensorID == "1"){
                 QString expositionTimesSensor1 = query.value(1).toString();
-                qDebug()<< "datos sensor 1" << expositionTimesSensor1;
+                //qDebug()<< "datos sensor 1" << expositionTimesSensor1;
                 reloadExpositionTimesSensor1(expositionTimesSensor1, 1);
             }
             if (sensorID == "2"){
                 QString expositionTimesSensor2 = query.value(1).toString();
-                qDebug()<< "datos sensor 2" << expositionTimesSensor2;
+                //qDebug()<< "datos sensor 2" << expositionTimesSensor2;
                 reloadExpositionTimesSensor2(expositionTimesSensor2, 2);
             }
         }
         db.commit();
-        qDebug()<<query.next();
     }
 }
+
+void MainWindow_UserSelectedBed::reloadAveragePressureValues(){
+
+    if(openPromedios){
+        QSqlQuery queryPromedios(dbPromedios);
+        queryPromedios.prepare("SELECT * FROM  promediosPresionZonas WHERE 1");
+        queryPromedios.exec();
+
+        while (queryPromedios.next()){
+            QString sensorID = queryPromedios.value(0).toString();
+            if (sensorID == "1"){
+                promediosZona1 = queryPromedios.value(1).toString();
+                //qDebug()<< "datos promedios zona 1" << promediosZona1;
+            }
+            if (sensorID == "2"){
+                promediosZona2 = queryPromedios.value(1).toString();
+            }
+            if (sensorID == "3"){
+                promediosZona3 = queryPromedios.value(1).toString();
+            }
+            if (sensorID == "4"){
+                promediosZona4 = queryPromedios.value(1).toString();
+            }
+            if (sensorID == "5"){
+                promediosZona5 = queryPromedios.value(1).toString();
+            }
+            if (sensorID == "6"){
+                promediosZona6 = queryPromedios.value(1).toString();
+            }
+        }
+        insertPlots(promediosZona1, promediosZona2, promediosZona3, promediosZona4, promediosZona5, promediosZona6);
+        dbPromedios.commit();
+    }
+}
+void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString promediosZona2, QString promediosZona3, QString promediosZona4, QString promediosZona5, QString promediosZona6){
+    QVector<double> x(100), y(100), x1(100), y1(100), x2(100), y2(100), x3(100), y3(100), x4(100), y4(100), x5(100), y5(100);
+    QVector<QCPScatterStyle::ScatterShape> shapes;
+    shapes << QCPScatterStyle::ssCircle;
+
+    QStringList vectorPromedioZona1 = promediosZona1.split(',');
+    QString valorFloat = vectorPromedioZona1.last();
+    x.append(contador);
+    y.append(valorFloat.toFloat());
+
+    QStringList vectorPromedioZona2 = promediosZona2.split(',');
+    QString valorFloat2 = vectorPromedioZona2.last();
+    x1.append(contador);
+    y1.append(valorFloat2.toFloat());
+
+    QStringList vectorPromedioZona3 = promediosZona3.split(',');
+    QString valorFloat3 = vectorPromedioZona3.last();
+    x2.append(contador);
+    y2.append(valorFloat3.toFloat());
+
+    QStringList vectorPromedioZona4 = promediosZona4.split(',');
+    QString valorFloat4 = vectorPromedioZona4.last();
+    x3.append(contador);
+    y3.append(valorFloat4.toFloat());
+
+    QStringList vectorPromedioZona5 = promediosZona5.split(',');
+    QString valorFloat5 = vectorPromedioZona5.last();
+    x4.append(contador);
+    y4.append(valorFloat5.toFloat());
+
+    QStringList vectorPromedioZona6 = promediosZona6.split(',');
+    QString valorFloat6 = vectorPromedioZona6.last();
+    x5.append(contador);
+    y5.append(valorFloat6.toFloat());
+
+    ui->customPlot->addGraph();
+    //ui->customPlot->graph(0)->setData(x, y);  // setData para graficar vectores completos
+    ui->customPlot->graph(0)->addData(x, y);   // para graficar punto a punto
+    // Nombrar los ejes
+    ui->customPlot->yAxis->setLabel("Magnitud");
+
+    ui->customPlot->xAxis->setRange(0,60);
+    ui->customPlot->graph(0)->rescaleValueAxis();
+    ui->customPlot->yAxis->setRange(0,600);
+
+    ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
+
+
+
+    ui->customPlot->addGraph();
+    //ui->customPlot->graph(1)->setData(x1, y1); // setData para graficar vectores completos
+    ui->customPlot->graph(1)->addData(x1, y1);   // para graficar punto a punto
+    // Nombrar los ejes
+    ui->customPlot->yAxis->setLabel("Magnitud");
+
+    ui->customPlot->xAxis->setRange(0,60);
+    ui->customPlot->graph(1)->rescaleValueAxis();
+    ui->customPlot->yAxis->setRange(0,600);
+
+    ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
+
+
+    ui->customPlot->addGraph();
+    //ui->customPlot->graph(1)->setData(x1, y1); // setData para graficar vectores completos
+    ui->customPlot->graph(2)->addData(x2, y2);   // para graficar punto a punto
+    // Nombrar los ejes
+    ui->customPlot->yAxis->setLabel("Magnitud");
+
+    ui->customPlot->xAxis->setRange(0,60);
+    ui->customPlot->graph(2)->rescaleValueAxis();
+    ui->customPlot->yAxis->setRange(0,600);
+
+    ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
+
+
+    ui->customPlot->addGraph();
+    //ui->customPlot->graph(1)->setData(x1, y1); // setData para graficar vectores completos
+    ui->customPlot->graph(3)->addData(x3, y3);   // para graficar punto a punto
+    // Nombrar los ejes
+    ui->customPlot->yAxis->setLabel("Magnitud");
+
+    ui->customPlot->xAxis->setRange(0,60);
+    ui->customPlot->graph(3)->rescaleValueAxis();
+    ui->customPlot->yAxis->setRange(0,600);
+
+    ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
+
+
+    ui->customPlot->addGraph();
+    //ui->customPlot->graph(1)->setData(x1, y1); // setData para graficar vectores completos
+    ui->customPlot->graph(4)->addData(x4, y4);   // para graficar punto a punto
+    // Nombrar los ejes
+    ui->customPlot->yAxis->setLabel("Magnitud");
+
+    ui->customPlot->xAxis->setRange(0,60);
+    ui->customPlot->graph(4)->rescaleValueAxis();
+    ui->customPlot->yAxis->setRange(0,600);
+
+    ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
+
+
+    ui->customPlot->addGraph();
+    //ui->customPlot->graph(1)->setData(x1, y1); // setData para graficar vectores completos
+    ui->customPlot->graph(5)->addData(x5, y5);   // para graficar punto a punto
+    // Nombrar los ejes
+    ui->customPlot->yAxis->setLabel("Magnitud");
+
+    ui->customPlot->xAxis->setRange(0,60);
+    ui->customPlot->graph(5)->rescaleValueAxis();
+    ui->customPlot->yAxis->setRange(0,600);
+
+    ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
+    ui->customPlot->replot();
+    qDebug()<< "x:y:" << x[0] << y[0];
+
+
+    if(contador >= 55){
+        x.clear();
+        y.clear();
+        x1.clear();
+        y1.clear();
+        contador = 0;
+        ui->customPlot->clearGraphs();
+    }
+    contador = contador + 1;
+
+}
+
 
 void MainWindow_UserSelectedBed::reloadExpositionTimesSensor1(QString expositionTimes, int sensorID){
     QStringList vectorExpositionTimes = expositionTimes.split(",");
@@ -398,7 +558,7 @@ void MainWindow_UserSelectedBed::hidenLabelesExpositionTimes(){
 
 }
 void MainWindow_UserSelectedBed::hidenHorizontalVerticalLabels(){
-    if(stateMachine == 0 || stateMachine == 3){
+    if(stateMachine == 0 || stateMachine == 2){
         ui->label_VerticalDivision1->setHidden(true);
         ui->label_VerticalDivision2->setHidden(true);
         ui->label_VerticalDivision3->setHidden(true);

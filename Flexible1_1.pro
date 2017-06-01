@@ -7,7 +7,7 @@
 QT       += core gui
 QT       += sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = Flexible1_1
 TEMPLATE = app
@@ -16,11 +16,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     mainwindow_userselectedbed.cpp \
-    mainwindowalarmsconfig.cpp
+    mainwindowalarmsconfig.cpp \
+    qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
     mainwindow_userselectedbed.h \
-    mainwindowalarmsconfig.h
+    mainwindowalarmsconfig.h \
+    qcustomplot.h
 
 FORMS    += mainwindow.ui \
     mainwindow_userselectedbed.ui \
