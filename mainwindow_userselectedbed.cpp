@@ -27,7 +27,7 @@ MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
     open = db.open();
-
+    //ui->label_zona1_1->setStyleSheet("background: yellow");
     initActionsConnections();
 }
 
@@ -140,6 +140,7 @@ void MainWindow_UserSelectedBed::on_pushButtonPressureButton_clicked(bool checke
 
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
+    hidenHorizontalVerticalLabels();
 }
 
 
@@ -147,13 +148,15 @@ void MainWindow_UserSelectedBed::on_pushButtonExpositionTimes_clicked(bool check
 {
     stateMachine = 1;
     timerExpositionTimes->start(1500);
+    hidenHorizontalVerticalLabels();
 }
 
 void MainWindow_UserSelectedBed::on_pushButtonStadistics_clicked(bool checked)
 {
     stateMachine = 2;
-    timerExpositionTimes->stop();
+    //timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
+    hidenHorizontalVerticalLabels();
 }
 
 void MainWindow_UserSelectedBed::on_pushButtonStadistics_2_clicked(bool checked)
@@ -161,6 +164,7 @@ void MainWindow_UserSelectedBed::on_pushButtonStadistics_2_clicked(bool checked)
     stateMachine = 3;
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
+    hidenHorizontalVerticalLabels();
 }
 
 void MainWindow_UserSelectedBed::userSelectedBed(int bed){
@@ -393,3 +397,23 @@ void MainWindow_UserSelectedBed::hidenLabelesExpositionTimes(){
         ui->label_zona2_9->setHidden(true);
 
 }
+void MainWindow_UserSelectedBed::hidenHorizontalVerticalLabels(){
+    if(stateMachine == 0 || stateMachine == 3){
+        ui->label_VerticalDivision1->setHidden(true);
+        ui->label_VerticalDivision2->setHidden(true);
+        ui->label_VerticalDivision3->setHidden(true);
+        ui->label_VerticalDivision4->setHidden(true);
+        ui->label_VerticalDivision5->setHidden(true);
+        ui->label_HorizontalDivision1->setHidden(true);
+        ui->label_HorizontalDivision2->setHidden(true);
+    }else{
+        ui->label_VerticalDivision1->setHidden(false);
+        ui->label_VerticalDivision2->setHidden(false);
+        ui->label_VerticalDivision3->setHidden(false);
+        ui->label_VerticalDivision4->setHidden(false);
+        ui->label_VerticalDivision5->setHidden(false);
+        ui->label_HorizontalDivision1->setHidden(false);
+        ui->label_HorizontalDivision2->setHidden(false);
+    }
+}
+

@@ -25,6 +25,8 @@ public:
 
     void hidenLabelesExpositionTimes();
 
+    void hidenHorizontalVerticalLabels();
+
 private slots:
 
     void reloadExpositionTimes();
