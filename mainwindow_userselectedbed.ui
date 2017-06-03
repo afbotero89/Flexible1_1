@@ -203,7 +203,7 @@ background:rgb(0, 64, 128);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLabel" name="label_BedControl">
     <property name="geometry">
      <rect>
       <x>790</x>

@@ -19,5 +19,7 @@
         <file>sensor2.jpeg</file>
         <file>sensor1SinTiempos.jpeg</file>
         <file>sensor2SinTiempos.jpeg</file>
+        <file>controlDesactivo.png</file>
+        <file>control1.1.png</file>
     </qresource>
 </RCC>

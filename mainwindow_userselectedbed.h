@@ -31,6 +31,8 @@ public:
 
     void insertPlots(QString promediosZona1, QString promediosZona2, QString promediosZona3, QString promediosZona4, QString promediosZona5, QString promediosZona6);
 
+    void changeControlImage();
+
 private slots:
 
     void reloadExpositionTimes();

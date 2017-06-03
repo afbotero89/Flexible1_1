@@ -27,6 +27,8 @@ private slots:
 
     void on_pushButton_UCIBed4_clicked(bool checked);
 
+    void reloadImagesAndTimers();
+
 private:
     Ui::MainWindow *ui;
 };

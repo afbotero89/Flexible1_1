@@ -27,6 +27,8 @@ QString promediosZona4;
 QString promediosZona5;
 QString promediosZona6;
 
+int countImageControl = 0;
+
 MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow_UserSelectedBed)
@@ -49,6 +51,7 @@ void MainWindow_UserSelectedBed::on_pushButton_4_clicked(bool checked)
 {
     timer->stop();
     timerExpositionTimes->stop();
+
     this->close();
 }
 
@@ -59,6 +62,7 @@ void MainWindow_UserSelectedBed::initActionsConnections(){
 
 void MainWindow_UserSelectedBed::reloadStadisticsImage(){
 
+    changeControlImage();
     QPixmap pixmapSensor1("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
     QPixmap pixmapSensor2("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
     QPixmap historicGraphs("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
@@ -126,6 +130,7 @@ void MainWindow_UserSelectedBed::on_pushButtonPressureButton_clicked(bool checke
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
     hidenHorizontalVerticalLabels();
+
 }
 
 
@@ -566,5 +571,19 @@ void MainWindow_UserSelectedBed::hidenHorizontalVerticalLabels(){
         ui->label_HorizontalDivision1->setHidden(false);
         ui->label_HorizontalDivision2->setHidden(false);
     }
+}
+
+void MainWindow_UserSelectedBed::changeControlImage(){
+    QPixmap imageControl(":/images/controlActivo1.png");
+    countImageControl = countImageControl + 1;
+    if(countImageControl<10){
+        imageControl = QPixmap(":/images/controlActivo1.png");
+    }else if(countImageControl >= 10){
+        imageControl = QPixmap(":/images/control1.1.png");
+    }
+    if (countImageControl>20){
+        countImageControl = 0;
+    }
+    ui->label_BedControl->setPixmap(imageControl);
 }
 
