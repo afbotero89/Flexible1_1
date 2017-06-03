@@ -62,16 +62,27 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
     QPixmap pixmapSensor1("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
     QPixmap pixmapSensor2("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
     QPixmap historicGraphs("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
+    QImage imageSensor("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1.jpeg");
 
      if(stateMachine == 0 || stateMachine == 1){
-         pixmapSensor1 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1SinTiempos.jpeg");
-         pixmapSensor2 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor2SinTiempos.jpeg");
+         imageSensor = QImage("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1.jpeg");
+
+         pixmapSensor1 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1.jpeg");
+         qDebug()<< "size"<< pixmapSensor1.toImage().size();
+         qDebug()<< "valor en pixel"<< pixmapSensor1.toImage().pixel(799,399);
+         if (pixmapSensor1.toImage().pixel(799,399)==4278190334){
+             if(pixmapSensor1.size().width()==0 & pixmapSensor1.size().height()==0){
+
+             }else{
+                 ui->label_stadisticWindow->setPixmap(pixmapSensor1);
+             }
+
+         }else{
+            qDebug()<< "entra 2";
+         }
      }
 
      if(stateMachine == 0){
-
-        ui->label_stadisticWindow->setFixedWidth(651);
-        ui->label_stadisticWindow2->setFixedWidth(651);
 
         historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/flexible1.1/img/historial_main.png");
 
@@ -82,9 +93,6 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
         }
 
     }else if (stateMachine == 1){
-
-        ui->label_stadisticWindow->setFixedWidth(651);
-        ui->label_stadisticWindow2->setFixedWidth(651);
 
         historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/flexible1.1/img/historial_main.png");
 
@@ -105,18 +113,6 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
         }
 
         reloadAveragePressureValues();
-    }
-
-    if(pixmapSensor1.size().width()==0 & pixmapSensor1.size().height()==0){
-
-    }else{
-        ui->label_stadisticWindow->setPixmap(pixmapSensor1);
-    }
-
-    if(pixmapSensor2.size().width()==0 & pixmapSensor2.size().height()==0){
-
-    }else{
-        ui->label_stadisticWindow2->setPixmap(pixmapSensor2);
     }
 
 }
@@ -185,7 +181,6 @@ void MainWindow_UserSelectedBed::userSelectedBed(int bed){
 }
 
 void MainWindow_UserSelectedBed::reloadExpositionTimes(){
-    qDebug()<< "open db=" << open;
     if(open){
         QSqlQuery query(db);
         query.prepare("SELECT * FROM  tiemposExposicion WHERE 1");
@@ -194,12 +189,10 @@ void MainWindow_UserSelectedBed::reloadExpositionTimes(){
             QString sensorID = query.value(0).toString();
             if (sensorID == "1"){
                 QString expositionTimesSensor1 = query.value(1).toString();
-                //qDebug()<< "datos sensor 1" << expositionTimesSensor1;
                 reloadExpositionTimesSensor1(expositionTimesSensor1, 1);
             }
             if (sensorID == "2"){
                 QString expositionTimesSensor2 = query.value(1).toString();
-                //qDebug()<< "datos sensor 2" << expositionTimesSensor2;
                 reloadExpositionTimesSensor2(expositionTimesSensor2, 2);
             }
         }
@@ -218,7 +211,6 @@ void MainWindow_UserSelectedBed::reloadAveragePressureValues(){
             QString sensorID = queryPromedios.value(0).toString();
             if (sensorID == "1"){
                 promediosZona1 = queryPromedios.value(1).toString();
-                //qDebug()<< "datos promedios zona 1" << promediosZona1;
             }
             if (sensorID == "2"){
                 promediosZona2 = queryPromedios.value(1).toString();
@@ -241,9 +233,18 @@ void MainWindow_UserSelectedBed::reloadAveragePressureValues(){
     }
 }
 void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString promediosZona2, QString promediosZona3, QString promediosZona4, QString promediosZona5, QString promediosZona6){
-    QVector<double> x(100), y(100), x1(100), y1(100), x2(100), y2(100), x3(100), y3(100), x4(100), y4(100), x5(100), y5(100);
+    QVector<double> x, y, x1, y1, x2, y2, x3, y3, x4, y4, x5, y5;
     QVector<QCPScatterStyle::ScatterShape> shapes;
     shapes << QCPScatterStyle::ssCircle;
+
+    if(contador >= 55){
+        x.clear();
+        y.clear();
+        x1.clear();
+        y1.clear();
+        contador = 0;
+        ui->customPlot->clearGraphs();
+    }
 
     QStringList vectorPromedioZona1 = promediosZona1.split(',');
     QString valorFloat = vectorPromedioZona1.last();
@@ -284,7 +285,7 @@ void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString pro
     ui->customPlot->xAxis->setRange(0,60);
     ui->customPlot->graph(0)->rescaleValueAxis();
     ui->customPlot->yAxis->setRange(0,600);
-
+    ui->customPlot->graph(0)->setPen(QPen(Qt::blue));
     ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
 
 
@@ -298,7 +299,7 @@ void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString pro
     ui->customPlot->xAxis->setRange(0,60);
     ui->customPlot->graph(1)->rescaleValueAxis();
     ui->customPlot->yAxis->setRange(0,600);
-
+    ui->customPlot->graph(1)->setPen(QPen(Qt::black));
     ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
 
 
@@ -311,7 +312,7 @@ void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString pro
     ui->customPlot->xAxis->setRange(0,60);
     ui->customPlot->graph(2)->rescaleValueAxis();
     ui->customPlot->yAxis->setRange(0,600);
-
+    ui->customPlot->graph(2)->setPen(QPen(Qt::blue));
     ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
 
 
@@ -324,7 +325,7 @@ void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString pro
     ui->customPlot->xAxis->setRange(0,60);
     ui->customPlot->graph(3)->rescaleValueAxis();
     ui->customPlot->yAxis->setRange(0,600);
-
+    ui->customPlot->graph(3)->setPen(QPen(Qt::black));
     ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
 
 
@@ -337,7 +338,7 @@ void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString pro
     ui->customPlot->xAxis->setRange(0,60);
     ui->customPlot->graph(4)->rescaleValueAxis();
     ui->customPlot->yAxis->setRange(0,600);
-
+    ui->customPlot->graph(4)->setPen(QPen(Qt::blue));
     ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
 
 
@@ -350,24 +351,14 @@ void MainWindow_UserSelectedBed::insertPlots(QString promediosZona1, QString pro
     ui->customPlot->xAxis->setRange(0,60);
     ui->customPlot->graph(5)->rescaleValueAxis();
     ui->customPlot->yAxis->setRange(0,600);
-
+    ui->customPlot->graph(5)->setPen(QPen(Qt::black));
     ui->customPlot->graph()->setScatterStyle(QCPScatterStyle(shapes.at(0), 5));
     ui->customPlot->replot();
-    qDebug()<< "x:y:" << x[0] << y[0];
+    ui->customPlot->yAxis->setVisible(false);
 
-
-    if(contador >= 55){
-        x.clear();
-        y.clear();
-        x1.clear();
-        y1.clear();
-        contador = 0;
-        ui->customPlot->clearGraphs();
-    }
     contador = contador + 1;
 
 }
-
 
 void MainWindow_UserSelectedBed::reloadExpositionTimesSensor1(QString expositionTimes, int sensorID){
     QStringList vectorExpositionTimes = expositionTimes.split(",");
