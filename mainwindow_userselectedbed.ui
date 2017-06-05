@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>GIBIC Group</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background:#222222;</string>
@@ -272,7 +272,7 @@ color:white;</string>
 color:white;</string>
     </property>
     <property name="text">
-     <string>Distribución</string>
+     <string>Distribution</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonExpositionTimes">
@@ -289,7 +289,7 @@ color:white;</string>
 color:white;</string>
     </property>
     <property name="text">
-     <string>Tiempos</string>
+     <string>Times</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonStadistics_2">
@@ -306,7 +306,7 @@ color:white;</string>
 color:white;</string>
     </property>
     <property name="text">
-     <string>Estadísticas</string>
+     <string>Stadistics</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_zona1_3">

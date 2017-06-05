@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QTimer>
-
+#include <QDesktopWidget>
 
 int userSelectedBed = 1;
 // Variables clock 1
@@ -48,10 +48,13 @@ QString segundosClock4;
 QString minutosClock4;
 QString horasClock4;
 
-
+QString principalPath = "/Users/FING156561/Developer/Flexible1_1/timer/";
 
 QStringList argo,list;
 QTimer *timerReloadClockImages;
+
+int screenWith;
+int screenHeight;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -59,6 +62,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     mainwindowUserSelectedBed = new MainWindow_UserSelectedBed;
+
+    QDesktopWidget wid;
+    screenWith = wid.screen()->width();
+    screenHeight = wid.screen()->height();
+
     timerReloadClockImages = new QTimer(this);
     connect(timerReloadClockImages,SIGNAL(timeout()),this,SLOT(reloadImagesAndTimers()));
     timerReloadClockImages->start(1000);
@@ -72,19 +80,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_UCIBed1_clicked(bool checked)
 {
     timerReloadClockImages->stop();
+    mainwindowUserSelectedBed->setGeometry((screenWith/2)- (1694/2), (screenHeight/2) - (1000/2), 1694, 1000);
     mainwindowUserSelectedBed->show();
     mainwindowUserSelectedBed->userSelectedBed(1);
-    qDebug()<< "muestra cama 1";
-    argo.clear();
-    list.clear();
-    QProcess * exec;
-    exec =new QProcess(this);
-    exec->start("sh /Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/mainPlots.sh");
+
 }
 
 void MainWindow::on_pushButton_UCIBed2_clicked(bool checked)
 {
     timerReloadClockImages->stop();
+    mainwindowUserSelectedBed->setGeometry((screenWith/2)- (1694/2), (screenHeight/2) - (1000/2), 1694, 1000);
     mainwindowUserSelectedBed->show();
     mainwindowUserSelectedBed->userSelectedBed(2);
     qDebug()<< "muestra cama 2";
@@ -95,6 +100,7 @@ void MainWindow::on_pushButton_UCIBed2_clicked(bool checked)
 void MainWindow::on_pushButton_UCIBed3_clicked(bool checked)
 {
     timerReloadClockImages->stop();
+    mainwindowUserSelectedBed->setGeometry((screenWith/2)- (1694/2), (screenHeight/2) - (1000/2), 1694, 1000);
     mainwindowUserSelectedBed->show();
     mainwindowUserSelectedBed->userSelectedBed(3);
     qDebug()<< "muestra cama 3";
@@ -104,6 +110,7 @@ void MainWindow::on_pushButton_UCIBed3_clicked(bool checked)
 void MainWindow::on_pushButton_UCIBed4_clicked(bool checked)
 {
     timerReloadClockImages->stop();
+    mainwindowUserSelectedBed->setGeometry((screenWith/2)- (1694/2), (screenHeight/2) - (1000/2), 1694, 1000);
     mainwindowUserSelectedBed->show();
     mainwindowUserSelectedBed->userSelectedBed(4);
     qDebug()<< "muestra cama 4";
@@ -144,11 +151,11 @@ void MainWindow::reloadImagesAndTimers(){
         contadorImagenesClock1 = 0;
     }
 
-    QPixmap clock1("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.00000.png");
+    QPixmap clock1(principalPath + "TimerV2.00000.png");
     if(contadorImagenesClock1 < 10){
-        clock1 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.0000" + QString::number(contadorImagenesClock1) + ".png");
+        clock1 = QPixmap(principalPath + "TimerV2.0000" + QString::number(contadorImagenesClock1) + ".png");
     }else{
-        clock1 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.000" + QString::number(contadorImagenesClock1) + ".png");
+        clock1 = QPixmap(principalPath + "TimerV2.000" + QString::number(contadorImagenesClock1) + ".png");
     }
     ui->pushButton_TimerImage1->setIcon(clock1);
     ui->pushButton_Timer1->setText(horasClock1 + ":" + minutosClock1 + ":" + segundosClock1);
@@ -186,11 +193,11 @@ void MainWindow::reloadImagesAndTimers(){
     if(contadorImagenesClock2 == 99){
         contadorImagenesClock2 = 0;
     }
-    QPixmap clock2("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.00000.png");
+    QPixmap clock2(principalPath + "TimerV2.00000.png");
     if(contadorImagenesClock2 < 10){
-        clock2 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.0000" + QString::number(contadorImagenesClock2) + ".png");
+        clock2 = QPixmap(principalPath + "TimerV2.0000" + QString::number(contadorImagenesClock2) + ".png");
     }else{
-        clock2 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.000" + QString::number(contadorImagenesClock2) + ".png");
+        clock2 = QPixmap(principalPath + "TimerV2.000" + QString::number(contadorImagenesClock2) + ".png");
     }
     ui->pushButton_TimerImage2->setIcon(clock2);
     ui->pushButton_Timer2->setText(horasClock2 + ":" + minutosClock2 + ":" + segundosClock2);
@@ -227,11 +234,11 @@ void MainWindow::reloadImagesAndTimers(){
     if(contadorImagenesClock3 == 99){
         contadorImagenesClock3 = 0;
     }
-    QPixmap clock3("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.00000.png");
+    QPixmap clock3(principalPath + "TimerV2.00000.png");
     if(contadorImagenesClock3 < 10){
-        clock3 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.0000" + QString::number(contadorImagenesClock3) + ".png");
+        clock3 = QPixmap(principalPath + "TimerV2.0000" + QString::number(contadorImagenesClock3) + ".png");
     }else{
-        clock3 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.000" + QString::number(contadorImagenesClock3) + ".png");
+        clock3 = QPixmap(principalPath + "TimerV2.000" + QString::number(contadorImagenesClock3) + ".png");
     }
     ui->pushButton_TimerImage3->setIcon(clock3);
     ui->pushButton_Timer3->setText(horasClock3 + ":" + minutosClock3 + ":" + segundosClock3);
@@ -268,11 +275,11 @@ void MainWindow::reloadImagesAndTimers(){
     if(contadorImagenesClock4 > 99){
         contadorImagenesClock4 = 0;
     }
-    QPixmap clock4("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.00000.png");
+    QPixmap clock4(principalPath + "TimerV2.00000.png");
     if(contadorImagenesClock4 < 10){
-        clock4 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.0000" + QString::number(contadorImagenesClock4) + ".png");
+        clock4 = QPixmap(principalPath + "TimerV2.0000" + QString::number(contadorImagenesClock4) + ".png");
     }else{
-        clock4 = QPixmap("/Users/FING156561/Developer/Flexible1_1/timer/TimerV2.000" + QString::number(contadorImagenesClock4) + ".png");
+        clock4 = QPixmap(principalPath + "TimerV2.000" + QString::number(contadorImagenesClock4) + ".png");
     }
     ui->pushButton_TimerImage4->setIcon(clock4);
     ui->pushButton_Timer4->setText(horasClock4 + ":" + minutosClock4 + ":" + segundosClock4);

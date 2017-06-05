@@ -29,6 +29,8 @@ QString promediosZona6;
 
 int countImageControl = 0;
 
+QString pathFlexible1 = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/";
+
 MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow_UserSelectedBed)
@@ -49,6 +51,16 @@ MainWindow_UserSelectedBed::~MainWindow_UserSelectedBed()
 
 void MainWindow_UserSelectedBed::on_pushButton_4_clicked(bool checked)
 {
+    stateMachine = 0;
+    ui->pushButtonPressureButton->setEnabled(true);
+    ui->pushButtonPressureButton->setStyleSheet("background: #222222; color:white");
+
+    ui->pushButtonExpositionTimes->setEnabled(true);
+    ui->pushButtonExpositionTimes->setStyleSheet("background: #222222; color:white");
+
+    ui->pushButtonStadistics_2->setEnabled(true);
+    ui->pushButtonStadistics_2->setStyleSheet("background: #222222; color:white");
+
     timer->stop();
     timerExpositionTimes->stop();
 
@@ -63,15 +75,15 @@ void MainWindow_UserSelectedBed::initActionsConnections(){
 void MainWindow_UserSelectedBed::reloadStadisticsImage(){
 
     changeControlImage();
-    QPixmap pixmapSensor1("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
-    QPixmap pixmapSensor2("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
-    QPixmap historicGraphs("/Users/FING156561/Developer/Flexible1_1/GraficoPresion.png");
-    QImage imageSensor("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1.jpeg");
+    QPixmap pixmapSensor1(pathFlexible1 + "GraficoPresion.png");
+    QPixmap pixmapSensor2(pathFlexible1 + "GraficoPresion.png");
+    QPixmap historicGraphs(pathFlexible1 + "GraficoPresion.png");
+    QImage imageSensor(pathFlexible1 + "sensor1.jpeg");
 
      if(stateMachine == 0 || stateMachine == 1){
-         imageSensor = QImage("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1.jpeg");
+         imageSensor = QImage(pathFlexible1 + "sensor1.jpeg");
 
-         pixmapSensor1 = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/appSensorFlexibleWebLocalMatplotlib/img/sensor1.jpeg");
+         pixmapSensor1 = QPixmap(pathFlexible1 + "sensor1.jpeg");
          qDebug()<< "size"<< pixmapSensor1.toImage().size();
          qDebug()<< "valor en pixel"<< pixmapSensor1.toImage().pixel(799,399);
          if (pixmapSensor1.toImage().pixel(799,399)==4278190334){
@@ -86,46 +98,34 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
          }
      }
 
-     if(stateMachine == 0){
+     historicGraphs = QPixmap(pathFlexible1 + "historial_main.png");
 
-        historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/flexible1.1/img/historial_main.png");
+     if (historicGraphs.width() == 0 || historicGraphs.height() == 0){
 
-        if (historicGraphs.width() == 0 || historicGraphs.height() == 0){
+     }else{
+         ui->label_historicRegisters->setPixmap(historicGraphs);
+     }
 
-        }else{
-            ui->label_historicRegisters->setPixmap(historicGraphs);
-        }
+     reloadAveragePressureValues();
 
-    }else if (stateMachine == 1){
-
-        historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/flexible1.1/img/historial_main.png");
-
-        if (historicGraphs.width() == 0 || historicGraphs.height() == 0){
-
-        }else{
-            ui->label_historicRegisters->setPixmap(historicGraphs);
-        }
-
-    }else if(stateMachine == 2){
-
-        historicGraphs = QPixmap("/Applications/XAMPP/xamppfiles/htdocs/flexible1.1/img/historial_main.png");
-
-        if (historicGraphs.width() == 0 || historicGraphs.height() == 0){
-
-        }else{
-            ui->label_historicRegisters->setPixmap(historicGraphs);
-        }
-
-        reloadAveragePressureValues();
-    }
 
 }
 
 void MainWindow_UserSelectedBed::on_pushButtonPressureButton_clicked(bool checked)
 {
     stateMachine = 0;
+    ui->pushButtonPressureButton->setEnabled(false);
+    ui->pushButtonPressureButton->setStyleSheet("background: green; color:white");
+
+    ui->pushButtonExpositionTimes->setEnabled(true);
+    ui->pushButtonExpositionTimes->setStyleSheet("background: #222222; color:white");
+
+    ui->pushButtonStadistics_2->setEnabled(true);
+    ui->pushButtonStadistics_2->setStyleSheet("background: #222222; color:white");
+
     ui->customPlot->setHidden(true);
     qDebug()<<"distribucion";
+    timer->stop();
     timer->start(200);
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
@@ -137,14 +137,26 @@ void MainWindow_UserSelectedBed::on_pushButtonPressureButton_clicked(bool checke
 void MainWindow_UserSelectedBed::on_pushButtonExpositionTimes_clicked(bool checked)
 {
     // Abre base de datos que almacena los tiempos de exposicion
-    QString path = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/estadisticas.db";
+    QString path = pathFlexible1 + "estadisticas.db";
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("tiemposExposicion");
     db.setDatabaseName(path);
     open = db.open();
 
     stateMachine = 1;
+
+    ui->pushButtonPressureButton->setEnabled(true);
+    ui->pushButtonPressureButton->setStyleSheet("background: #222222; color:white");
+
+    ui->pushButtonExpositionTimes->setEnabled(false);
+    ui->pushButtonExpositionTimes->setStyleSheet("background: green; color:white");
+
+    ui->pushButtonStadistics_2->setEnabled(true);
+    ui->pushButtonStadistics_2->setStyleSheet("background: #222222; color:white");
+
+    timerExpositionTimes->stop();
     timerExpositionTimes->start(1500);
+
     hidenHorizontalVerticalLabels();
 
     ui->customPlot->setHidden(true);
@@ -153,13 +165,22 @@ void MainWindow_UserSelectedBed::on_pushButtonExpositionTimes_clicked(bool check
 void MainWindow_UserSelectedBed::on_pushButtonStadistics_2_clicked(bool checked)
 {
     // Abre base de datos que almacena los promedios de presion por zonas
-    QString pathPromedios = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/estadisticasPromedios.db";
+    QString pathPromedios = pathFlexible1 + "estadisticasPromedios.db";
     QSqlDatabase dbPromedios = QSqlDatabase::addDatabase("QSQLITE");
     dbPromedios.setHostName("promediosPresion");
     dbPromedios.setDatabaseName(pathPromedios);
     openPromedios = dbPromedios.open();
 
     stateMachine = 2;
+    ui->pushButtonPressureButton->setEnabled(true);
+    ui->pushButtonPressureButton->setStyleSheet("background: #222222; color:white");
+
+    ui->pushButtonExpositionTimes->setEnabled(true);
+    ui->pushButtonExpositionTimes->setStyleSheet("background: #222222; color:white");
+
+    ui->pushButtonStadistics_2->setEnabled(false);
+    ui->pushButtonStadistics_2->setStyleSheet("background: green; color:white");
+
     timerExpositionTimes->stop();
     hidenLabelesExpositionTimes();
     hidenHorizontalVerticalLabels();
@@ -171,16 +192,16 @@ void MainWindow_UserSelectedBed::userSelectedBed(int bed){
  userSelectedBed_int = bed;
 
  if(userSelectedBed_int == 1){
-     QPixmap pixmapFourBedsImage("/Users/FING156561/Developer/Flexible1_1/UCI1.png");
+     QPixmap pixmapFourBedsImage(":/images/UCI1.png");
     ui->label_fourBedsImage->setPixmap(pixmapFourBedsImage);
  }else if (userSelectedBed_int == 2){
-    QPixmap pixmapFourBedsImage("/Users/FING156561/Developer/Flexible1_1/UCI2.png");
+    QPixmap pixmapFourBedsImage(":/images/UCI2.png");
     ui->label_fourBedsImage->setPixmap(pixmapFourBedsImage);
  }else if (userSelectedBed_int == 3){
-     QPixmap pixmapFourBedsImage("/Users/FING156561/Developer/Flexible1_1/UCI3.png");
+     QPixmap pixmapFourBedsImage(":/images/UCI3.png");
      ui->label_fourBedsImage->setPixmap(pixmapFourBedsImage);
   }else if (userSelectedBed_int == 4){
-     QPixmap pixmapFourBedsImage("/Users/FING156561/Developer/Flexible1_1/UCI4.png");
+     QPixmap pixmapFourBedsImage(":/images/UCI4.png");
      ui->label_fourBedsImage->setPixmap(pixmapFourBedsImage);
   }
 }
