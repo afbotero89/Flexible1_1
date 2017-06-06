@@ -29,7 +29,7 @@ QString promediosZona6;
 
 int countImageControl = 0;
 
-QString pathFlexible1 = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/";
+QString pathFlexible1 = "/Users/EstebanGarcia/GitHub/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/";
 
 MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     QMainWindow(parent),
@@ -75,6 +75,7 @@ void MainWindow_UserSelectedBed::initActionsConnections(){
 void MainWindow_UserSelectedBed::reloadStadisticsImage(){
 
     changeControlImage();
+    reloadInclinationBedImage();
     QPixmap pixmapSensor1(pathFlexible1 + "GraficoPresion.png");
     QPixmap pixmapSensor2(pathFlexible1 + "GraficoPresion.png");
     QPixmap historicGraphs(pathFlexible1 + "GraficoPresion.png");
@@ -606,5 +607,15 @@ void MainWindow_UserSelectedBed::changeControlImage(){
         countImageControl = 0;
     }
     ui->label_BedControl->setPixmap(imageControl);
+}
+
+void MainWindow_UserSelectedBed::reloadInclinationBedImage(){
+
+    QPixmap pixmapInclinationBedImage(pathFlexible1 + "inclinacion.jpeg");
+    if (pixmapInclinationBedImage.width() == 0 || pixmapInclinationBedImage.height() == 0){
+
+    }else{
+        ui->label_Inclinacion->setPixmap(pixmapInclinationBedImage);
+    }
 }
 

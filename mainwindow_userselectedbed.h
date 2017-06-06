@@ -33,6 +33,8 @@ public:
 
     void changeControlImage();
 
+    void reloadInclinationBedImage();
+
 private slots:
 
     void reloadExpositionTimes();

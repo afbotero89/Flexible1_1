@@ -150,7 +150,7 @@ border-radius: 10px;</string>
     <property name="geometry">
      <rect>
       <x>1420</x>
-      <y>240</y>
+      <y>250</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -181,23 +181,23 @@ qproperty-alignment: AlignCenter;
 background:rgb(0, 64, 128);</string>
     </property>
     <property name="text">
-     <string>Tilt level: 45</string>
+     <string>Tilt level</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="label_Inclinacion">
     <property name="geometry">
      <rect>
-      <x>1480</x>
-      <y>130</y>
-      <width>131</width>
-      <height>101</height>
+      <x>1470</x>
+      <y>120</y>
+      <width>151</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="images.qrc">:/images/BedMonitoreoV2.00033.png</pixmap>
+     <pixmap>../../Downloads/BedMonitoreoV200000 (1).jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
