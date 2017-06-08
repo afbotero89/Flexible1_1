@@ -75,7 +75,6 @@ void MainWindow_UserSelectedBed::initActionsConnections(){
 void MainWindow_UserSelectedBed::reloadStadisticsImage(){
 
     changeControlImage();
-    reloadInclinationBedImage();
     QPixmap pixmapSensor1(pathFlexible1 + "GraficoPresion.png");
     QPixmap pixmapSensor2(pathFlexible1 + "GraficoPresion.png");
     QPixmap historicGraphs(pathFlexible1 + "GraficoPresion.png");
