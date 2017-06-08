@@ -48,7 +48,7 @@ QString segundosClock4;
 QString minutosClock4;
 QString horasClock4;
 
-QString principalPath = "/Users/FING156561/Developer/Flexible1_1/timer/";
+QString principalPath = "/Users/FING156560/Documents/GitHub/Flexible1_1/timer/";
 
 QStringList argo,list;
 QTimer *timerReloadClockImages;
