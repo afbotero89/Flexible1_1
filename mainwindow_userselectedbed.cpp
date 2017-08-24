@@ -29,7 +29,7 @@ QString promediosZona6;
 
 int countImageControl = 0;
 
-QString pathFlexible1 = "/Users/FING156560/Documents/GitHub/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/";
+QString pathFlexible1 = "/Applications/XAMPP/xamppfiles/htdocs/sensorFlexible_UDP_Protocol/sensorFlexibleSQLiteDB/";
 
 MainWindow_UserSelectedBed::MainWindow_UserSelectedBed(QWidget *parent) :
     QMainWindow(parent),
