@@ -86,7 +86,7 @@ void MainWindow_UserSelectedBed::reloadStadisticsImage(){
          pixmapSensor1 = QPixmap(pathFlexible1 + "sensor1.jpeg");
          qDebug()<< "size"<< pixmapSensor1.toImage().size();
          qDebug()<< "valor en pixel"<< pixmapSensor1.toImage().pixel(799,399);
-         if (pixmapSensor1.toImage().pixel(799,399)==4278190334){
+         if (pixmapSensor1.toImage().pixel(799,399)==4294967039){
              if(pixmapSensor1.size().width()==0 & pixmapSensor1.size().height()==0){
 
              }else{
@@ -390,80 +390,84 @@ void MainWindow_UserSelectedBed::reloadExpositionTimesSensor1(QString exposition
     QStringList vectorExpositionTimes = expositionTimes.split(",");
 
     if (vectorExpositionTimes[0]  == "00:00:00"){
-        ui->label_zona1_3->setHidden(true);
+        ui->label_zona1_0_0->setHidden(true);
     }else{
-        ui->label_zona1_3->setHidden(false);
+        ui->label_zona1_0_0->setHidden(false);
     }
 
     if (vectorExpositionTimes[1]  == "00:00:00"){
-        ui->label_zona1_2->setHidden(true);
+        ui->label_zona1_0_1->setHidden(true);
     }else{
-        ui->label_zona1_2->setHidden(false);
+        ui->label_zona1_0_1->setHidden(false);
     }
 
     if (vectorExpositionTimes[2]  == "00:00:00"){
-        ui->label_zona1_1->setHidden(true);
+        ui->label_zona1_0_2->setHidden(true);
     }else{
-        ui->label_zona1_1->setHidden(false);
+        ui->label_zona1_0_2->setHidden(false);
     }
 
     if (vectorExpositionTimes[3]  == "00:00:00"){
-        ui->label_zona1_6->setHidden(true);
+        ui->label_zona1_1_0->setHidden(true);
     }else{
-        ui->label_zona1_6->setHidden(false);
+        ui->label_zona1_1_0->setHidden(false);
     }
+
     if (vectorExpositionTimes[4]  == "00:00:00"){
-        ui->label_zona1_5->setHidden(true);
+        ui->label_zona1_1_1->setHidden(true);
     }else{
-        ui->label_zona1_5->setHidden(false);
+        ui->label_zona1_1_1->setHidden(false);
     }
+
     if (vectorExpositionTimes[5]  == "00:00:00"){
-        ui->label_zona1_4->setHidden(true);
+        ui->label_zona1_1_2->setHidden(true);
     }else{
-        ui->label_zona1_4->setHidden(false);
+        ui->label_zona1_1_2->setHidden(false);
     }
 
     if (vectorExpositionTimes[6]  == "00:00:00"){
-        ui->label_zona1_9->setHidden(true);
+        ui->label_zona1_2_0->setHidden(true);
     }else{
-        ui->label_zona1_9->setHidden(false);
+        ui->label_zona1_2_0->setHidden(false);
     }
 
     if (vectorExpositionTimes[7]  == "00:00:00"){
-        ui->label_zona1_8->setHidden(true);
+        ui->label_zona1_2_1->setHidden(true);
     }else{
-        ui->label_zona1_8->setHidden(false);
+        ui->label_zona1_2_1->setHidden(false);
     }
 
     if (vectorExpositionTimes[8]  == "00:00:00"){
-        ui->label_zona1_7->setHidden(true);
+        ui->label_zona1_2_2->setHidden(true);
     }else{
-        ui->label_zona1_7->setHidden(false);
+        ui->label_zona1_2_2->setHidden(false);
     }
 
-    QString timeZone1_1 = vectorExpositionTimes[2];
-    QString timeZone1_2 = vectorExpositionTimes[1];
-    QString timeZone1_3 = vectorExpositionTimes[0];
+    QString timeZone0_0 = vectorExpositionTimes[0];
+    QString timeZone0_1 = vectorExpositionTimes[1];
+    QString timeZone0_2 = vectorExpositionTimes[2];
 
-    QString timeZone2_1 = vectorExpositionTimes[5];
-    QString timeZone2_2 = vectorExpositionTimes[4];
-    QString timeZone2_3 = vectorExpositionTimes[3];
+    QString timeZone1_0 = vectorExpositionTimes[3];
+    QString timeZone1_1 = vectorExpositionTimes[4];
+    QString timeZone1_2 = vectorExpositionTimes[5];
 
-    QString timeZone3_1 = vectorExpositionTimes[8];
-    QString timeZone3_2 = vectorExpositionTimes[7];
-    QString timeZone3_3 = vectorExpositionTimes[6];
+    QString timeZone2_0 = vectorExpositionTimes[6];
+    QString timeZone2_1 = vectorExpositionTimes[7];
+    QString timeZone2_2 = vectorExpositionTimes[8];
 
-    ui->label_zona1_1->setText(timeZone1_1);
-    ui->label_zona1_2->setText(timeZone1_2);
-    ui->label_zona1_3->setText(timeZone1_3);
+    ui->label_zona1_0_0->setText(timeZone0_0);
+    ui->label_zona1_0_1->setText(timeZone0_1);
+    ui->label_zona1_0_2->setText(timeZone0_2);
 
-    ui->label_zona1_4->setText(timeZone2_1);
-    ui->label_zona1_5->setText(timeZone2_2);
-    ui->label_zona1_6->setText(timeZone2_3);
+    ui->label_zona1_1_0->setText(timeZone1_0);
+    ui->label_zona1_1_1->setText(timeZone1_1);
+    ui->label_zona1_1_2->setText(timeZone1_2);
 
-    ui->label_zona1_7->setText(timeZone3_1);
-    ui->label_zona1_8->setText(timeZone3_2);
-    ui->label_zona1_9->setText(timeZone3_3);
+    ui->label_zona1_2_0->setText(timeZone2_0);
+    ui->label_zona1_2_1->setText(timeZone2_1);
+    ui->label_zona1_2_2->setText(timeZone2_2);
+
+
 
 }
 
@@ -471,107 +475,111 @@ void MainWindow_UserSelectedBed::reloadExpositionTimesSensor2(QString exposition
     QStringList vectorExpositionTimes = expositionTimes.split(",");
 
     if (vectorExpositionTimes[0]  == "00:00:00"){
-        ui->label_zona2_9->setHidden(true);
+        ui->label_zona2_0_0->setHidden(true);
     }else{
-        ui->label_zona2_9->setHidden(false);
+        ui->label_zona2_0_0->setHidden(false);
     }
 
     if (vectorExpositionTimes[1]  == "00:00:00"){
-        ui->label_zona2_6->setHidden(true);
+        ui->label_zona2_0_1->setHidden(true);
     }else{
-        ui->label_zona2_6->setHidden(false);
+        ui->label_zona2_0_1->setHidden(false);
     }
 
     if (vectorExpositionTimes[2]  == "00:00:00"){
-        ui->label_zona2_3->setHidden(true);
+        ui->label_zona2_0_2->setHidden(true);
     }else{
-        ui->label_zona2_3->setHidden(false);
+        ui->label_zona2_0_2->setHidden(false);
     }
 
     if (vectorExpositionTimes[3]  == "00:00:00"){
-        ui->label_zona2_8->setHidden(true);
+        ui->label_zona2_1_0->setHidden(true);
     }else{
-        ui->label_zona2_8->setHidden(false);
+        ui->label_zona2_1_0->setHidden(false);
     }
+
     if (vectorExpositionTimes[4]  == "00:00:00"){
-        ui->label_zona2_5->setHidden(true);
+        ui->label_zona2_1_1->setHidden(true);
     }else{
-        ui->label_zona2_5->setHidden(false);
+        ui->label_zona2_1_1->setHidden(false);
     }
+
     if (vectorExpositionTimes[5]  == "00:00:00"){
-        ui->label_zona2_2->setHidden(true);
+        ui->label_zona2_1_2->setHidden(true);
     }else{
-        ui->label_zona2_2->setHidden(false);
+        ui->label_zona2_1_2->setHidden(false);
     }
 
     if (vectorExpositionTimes[6]  == "00:00:00"){
-        ui->label_zona2_7->setHidden(true);
+        ui->label_zona2_2_0->setHidden(true);
     }else{
-        ui->label_zona2_7->setHidden(false);
+        ui->label_zona2_2_0->setHidden(false);
     }
 
     if (vectorExpositionTimes[7]  == "00:00:00"){
-        ui->label_zona2_4->setHidden(true);
+        ui->label_zona2_2_1->setHidden(true);
     }else{
-        ui->label_zona2_4->setHidden(false);
+        ui->label_zona2_2_1->setHidden(false);
     }
 
     if (vectorExpositionTimes[8]  == "00:00:00"){
-        ui->label_zona2_1->setHidden(true);
+        ui->label_zona2_2_2->setHidden(true);
     }else{
-        ui->label_zona2_1->setHidden(false);
+        ui->label_zona2_2_2->setHidden(false);
     }
 
-    QString timeZone1_1 = vectorExpositionTimes[0];
-    QString timeZone1_2 = vectorExpositionTimes[1];
-    QString timeZone1_3 = vectorExpositionTimes[2];
 
-    QString timeZone2_1 = vectorExpositionTimes[3];
-    QString timeZone2_2 = vectorExpositionTimes[4];
-    QString timeZone2_3 = vectorExpositionTimes[5];
+    QString timeZone0_0 = vectorExpositionTimes[0];
+    QString timeZone0_1 = vectorExpositionTimes[1];
+    QString timeZone0_2 = vectorExpositionTimes[2];
 
-    QString timeZone3_1 = vectorExpositionTimes[6];
-    QString timeZone3_2 = vectorExpositionTimes[7];
-    QString timeZone3_3 = vectorExpositionTimes[8];
+    QString timeZone1_0 = vectorExpositionTimes[3];
+    QString timeZone1_1 = vectorExpositionTimes[4];
+    QString timeZone1_2 = vectorExpositionTimes[5];
 
-    ui->label_zona2_1->setText(timeZone3_3);
-    ui->label_zona2_2->setText(timeZone2_3);
-    ui->label_zona2_3->setText(timeZone1_3);
+    QString timeZone2_0 = vectorExpositionTimes[6];
+    QString timeZone2_1 = vectorExpositionTimes[7];
+    QString timeZone2_2 = vectorExpositionTimes[8];
 
-    ui->label_zona2_4->setText(timeZone3_2);
-    ui->label_zona2_5->setText(timeZone2_2);
-    ui->label_zona2_6->setText(timeZone1_2);
+    ui->label_zona2_0_0->setText(timeZone0_0);
+    ui->label_zona2_0_1->setText(timeZone0_1);
+    ui->label_zona2_0_2->setText(timeZone0_2);
 
-    ui->label_zona2_7->setText(timeZone3_1);
-    ui->label_zona2_8->setText(timeZone2_1);
-    ui->label_zona2_9->setText(timeZone1_1);
+    ui->label_zona2_1_0->setText(timeZone1_0);
+    ui->label_zona2_1_1->setText(timeZone1_1);
+    ui->label_zona2_1_2->setText(timeZone1_2);
+
+    ui->label_zona2_2_0->setText(timeZone2_0);
+    ui->label_zona2_2_1->setText(timeZone2_1);
+    ui->label_zona2_2_2->setText(timeZone2_2);
+
 }
 
 void MainWindow_UserSelectedBed::hidenLabelesExpositionTimes(){
 
-        ui->label_zona1_1->setHidden(true);
-        ui->label_zona1_2->setHidden(true);
-        ui->label_zona1_3->setHidden(true);
+        ui->label_zona1_2_0->setHidden(true);
+        ui->label_zona1_1_0->setHidden(true);
+        ui->label_zona1_0_0->setHidden(true);
 
-        ui->label_zona1_4->setHidden(true);
-        ui->label_zona1_5->setHidden(true);
-        ui->label_zona1_6->setHidden(true);
+        ui->label_zona1_2_1->setHidden(true);
+        ui->label_zona1_1_1->setHidden(true);
+        ui->label_zona1_0_1->setHidden(true);
 
-        ui->label_zona1_7->setHidden(true);
-        ui->label_zona1_8->setHidden(true);
-        ui->label_zona1_9->setHidden(true);
+        ui->label_zona1_2_2->setHidden(true);
+        ui->label_zona1_1_2->setHidden(true);
+        ui->label_zona1_0_2->setHidden(true);
 
-        ui->label_zona2_1->setHidden(true);
-        ui->label_zona2_2->setHidden(true);
-        ui->label_zona2_3->setHidden(true);
+        ui->label_zona2_2_0->setHidden(true);
+        ui->label_zona2_1_0->setHidden(true);
+        ui->label_zona2_0_0->setHidden(true);
 
-        ui->label_zona2_4->setHidden(true);
-        ui->label_zona2_5->setHidden(true);
-        ui->label_zona2_6->setHidden(true);
+        ui->label_zona2_2_1->setHidden(true);
+        ui->label_zona2_1_1->setHidden(true);
+        ui->label_zona2_0_1->setHidden(true);
 
-        ui->label_zona2_7->setHidden(true);
-        ui->label_zona2_8->setHidden(true);
-        ui->label_zona2_9->setHidden(true);
+        ui->label_zona2_2_2->setHidden(true);
+        ui->label_zona2_1_2->setHidden(true);
+        ui->label_zona2_0_2->setHidden(true);
 
 }
 void MainWindow_UserSelectedBed::hidenHorizontalVerticalLabels(){

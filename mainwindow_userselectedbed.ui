@@ -309,7 +309,7 @@ color:white;</string>
      <string>Stadistics</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_3">
+   <widget class="QLabel" name="label_zona1_0_0">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -329,7 +329,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_6">
+   <widget class="QLabel" name="label_zona1_0_1">
     <property name="geometry">
      <rect>
       <x>710</x>
@@ -349,7 +349,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_9">
+   <widget class="QLabel" name="label_zona1_0_2">
     <property name="geometry">
      <rect>
       <x>920</x>
@@ -369,7 +369,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_3">
+   <widget class="QLabel" name="label_zona2_0_0">
     <property name="geometry">
      <rect>
       <x>1140</x>
@@ -389,7 +389,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_6">
+   <widget class="QLabel" name="label_zona2_0_1">
     <property name="geometry">
      <rect>
       <x>1360</x>
@@ -409,7 +409,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_2">
+   <widget class="QLabel" name="label_zona1_1_0">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -429,7 +429,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_5">
+   <widget class="QLabel" name="label_zona1_1_1">
     <property name="geometry">
      <rect>
       <x>710</x>
@@ -449,7 +449,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_8">
+   <widget class="QLabel" name="label_zona1_1_2">
     <property name="geometry">
      <rect>
       <x>920</x>
@@ -469,7 +469,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_2">
+   <widget class="QLabel" name="label_zona2_1_0">
     <property name="geometry">
      <rect>
       <x>1140</x>
@@ -489,7 +489,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_5">
+   <widget class="QLabel" name="label_zona2_1_1">
     <property name="geometry">
      <rect>
       <x>1360</x>
@@ -509,7 +509,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_9">
+   <widget class="QLabel" name="label_zona2_0_2">
     <property name="geometry">
      <rect>
       <x>1570</x>
@@ -529,7 +529,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_8">
+   <widget class="QLabel" name="label_zona2_1_2">
     <property name="geometry">
      <rect>
       <x>1570</x>
@@ -549,7 +549,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_1">
+   <widget class="QLabel" name="label_zona1_2_0">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -569,7 +569,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_4">
+   <widget class="QLabel" name="label_zona1_2_1">
     <property name="geometry">
      <rect>
       <x>710</x>
@@ -589,7 +589,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona1_7">
+   <widget class="QLabel" name="label_zona1_2_2">
     <property name="geometry">
      <rect>
       <x>920</x>
@@ -609,7 +609,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_1">
+   <widget class="QLabel" name="label_zona2_2_0">
     <property name="geometry">
      <rect>
       <x>1140</x>
@@ -629,7 +629,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_4">
+   <widget class="QLabel" name="label_zona2_2_1">
     <property name="geometry">
      <rect>
       <x>1360</x>
@@ -649,7 +649,7 @@ background:#08088A;</string>
      <string>00:00:00</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_zona2_7">
+   <widget class="QLabel" name="label_zona2_2_2">
     <property name="geometry">
      <rect>
       <x>1570</x>
