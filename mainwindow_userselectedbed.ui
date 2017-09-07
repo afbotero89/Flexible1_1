@@ -197,7 +197,7 @@ background:rgb(0, 64, 128);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Downloads/BedMonitoreoV200000 (1).jpg</pixmap>
+     <pixmap>BedMonitoreoV2.00033.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
